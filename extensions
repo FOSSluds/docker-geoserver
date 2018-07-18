@@ -8,7 +8,7 @@
 #mysql
 #oracle
 #feature-pregeneralized
-#sqlserver
+sqlserver
 #teradata
 
 ####################
@@ -37,7 +37,7 @@ pyramid
 ############
 # Services #
 ############
-#csw
+csw
 #wcs2_0-eo
 #wps
 #wps-cluster-hazelcast
@@ -56,5 +56,5 @@ geofence
 #monitor-hibernate
 #importer
 #importer-bdb
-#inspire
+inspire
 #printing
