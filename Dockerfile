@@ -1,10 +1,12 @@
 FROM tomcat:8-jre8
 
-MAINTAINER Oscar Fonts <oscar.fonts@geomati.co>
+MAINTAINER Ludger FOSS <fossluds@t-online.de>
 
 ENV GEOSERVER_VERSION 2.13.1
 ENV GEOSERVER_DATA_DIR /var/local/geoserver
 ENV GEOSERVER_INSTALL_DIR /usr/local/geoserver
+ENV GEOSERVER_EXT_DATA_DIR /var/local/geoserver-exts
+ENV GEOSERVER_EXT_INSTALL_DIR /usr/local/geoserver/WEB-INF/lib
 
 # Uncomment to use APT cache (requires apt-cacher-ng on host)
 #RUN echo "Acquire::http { Proxy \"http://`/sbin/ip route|awk '/default/ { print $3 }'`:3142\"; };" > /etc/apt/apt.conf.d/71-apt-cacher-ng
@@ -39,6 +41,9 @@ RUN mkdir ${GEOSERVER_DATA_DIR} \
 	&& unzip geoserver.war \
 	&& mv data/* ${GEOSERVER_DATA_DIR} \
 	&& rm -rf geoserver-${GEOSERVER_VERSION}-war.zip geoserver.war target *.txt
+
+# GeoServer Extensions
+RUN 
 
 # Enable CORS
 RUN sed -i '\:</web-app>:i\

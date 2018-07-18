@@ -12,6 +12,7 @@ usage="Usage: $0 -v <gs_version> [-f <exts_file>] [-t <target_dir>] [-h]
 
 extsFile="${PWD}/${DEFAULT_EXTS_FILE}"
 targetDir="${PWD}/${DEFAULT_TARGET_DIR}"
+version="2.13.1" # hard coded version
 
 while getopts "hv:t:f:" option; do
   case $option in
