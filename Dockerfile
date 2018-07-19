@@ -5,8 +5,7 @@ MAINTAINER Ludger FOSS <fossluds@t-online.de>
 ENV GEOSERVER_VERSION 2.13.1
 ENV GEOSERVER_DATA_DIR /var/local/geoserver
 ENV GEOSERVER_INSTALL_DIR /usr/local/geoserver
-ENV GEOSERVER_EXT_DATA_DIR /var/local/geoserver-exts
-ENV GEOSERVER_EXT_INSTALL_DIR /usr/local/geoserver/WEB-INF/lib
+ENV GEOSERVER_EXTENSION_SUFFIX_INSTALL_DIR WEB-INF/lib
 
 # Uncomment to use APT cache (requires apt-cacher-ng on host)
 #RUN echo "Acquire::http { Proxy \"http://`/sbin/ip route|awk '/default/ { print $3 }'`:3142\"; };" > /etc/apt/apt.conf.d/71-apt-cacher-ng
