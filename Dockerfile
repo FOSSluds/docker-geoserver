@@ -42,7 +42,8 @@ RUN mkdir ${GEOSERVER_DATA_DIR} \
 	&& rm -rf geoserver-${GEOSERVER_VERSION}-war.zip geoserver.war target *.txt
 
 # GeoServer Extensions
-RUN 
+RUN cd ${GEOSERVER_INSTALL_DIR} \
+	&& build_exts_dir.sh -v ${GEOSERVER_VERSION} -t ${GEOSERVER_EXTENSION_SUFFIX_INSTALL_DIR}
 
 # Enable CORS
 RUN sed -i '\:</web-app>:i\
