@@ -10,8 +10,9 @@ usage="Usage: $0 -v <gs_version> [-f <exts_file>] [-t <target_dir>] [-h]
   -t  target directory. Default is '${DEFAULT_TARGET_DIR}' in the current directory.
   -h  Show this help."
 
-extsFile="${PWD}/${DEFAULT_EXTS_FILE}"
-targetDir="${PWD}/${DEFAULT_TARGET_DIR}"
+currentDirectory=$(PWD)
+extsFile="./${DEFAULT_EXTS_FILE}"
+targetDir="."
 
 while getopts "hv:t:f:" option; do
   case $option in

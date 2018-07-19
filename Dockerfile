@@ -43,11 +43,10 @@ RUN mkdir ${GEOSERVER_DATA_DIR} \
 
 # GeoServer Extensions
 RUN mkdir ${GEOSERVER_DATA_DIR}/tmp
-ADD build_exts_dir.sh ${GEOSERVER_DATA_DIR}/tmp/getExtensions.sh
+ADD getExtensions.sh ${GEOSERVER_DATA_DIR}/tmp/getExtensions.sh
 RUN chmod +x ${GEOSERVER_DATA_DIR}/tmp/getExtensions.sh
 ADD extensions ${GEOSERVER_DATA_DIR}/tmp/extensions
-RUN cd ${GEOSERVER_DATA_DIR} \
-	&& cd tmp \
+RUN cd ${GEOSERVER_DATA_DIR}/tmp
 	&& ./getExtensions.sh -v ${GEOSERVER_VERSION} -t "." \
 	&& cp *.jar ${GEOSERVER_INSTALL_DIR}/${GEOSERVER_EXTENSION_SUFFIX_INSTALL_DIR} \
 	&& cd ${GEOSERVER_DATA_DIR} \
