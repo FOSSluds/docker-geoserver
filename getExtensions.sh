@@ -68,16 +68,16 @@ cd ${targetDir}
 echo "[INFO] Downloading extensions to ${targetDir}..."
 
 for ext in ${exts}; do
-  if [[ ${ext} == "geofence" ]]; then
-    filename="geoserver-${majorVersion}-SNAPSHOT-geofence-plugin.zip"
-    baseUrl=${baseAresUrl}
-  elif [[ ${ext} == "geofence-server" ]]; then
-    filename="geoserver-${majorVersion}-SNAPSHOT-geofence-server-plugin.zip"
-    baseUrl=${baseAresUrl}
-  else
+  # if [[ ${ext} == "geofence" ]]; then
+  #   filename="geoserver-${majorVersion}-SNAPSHOT-geofence-plugin.zip"
+  #   baseUrl=${baseAresUrl}
+  # elif [[ ${ext} == "geofence-server" ]]; then
+  #   filename="geoserver-${majorVersion}-SNAPSHOT-geofence-server-plugin.zip"
+  #   baseUrl=${baseAresUrl}
+  # else
     filename="geoserver-${version}-${ext}-plugin.zip"
     baseUrl=${baseSfUrl}
-  fi
+  # fi
 
   echo "[INFO] * Extension: $ext..."
   wget "${baseUrl}/${filename}"
