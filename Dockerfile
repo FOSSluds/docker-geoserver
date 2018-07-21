@@ -52,15 +52,6 @@ RUN mkdir -p ${GEOSERVER_DATA_DIR}/tmp \
 	&& cd ${GEOSERVER_DATA_DIR} \
 	&& rm -rf ${GEOSERVER_DATA_DIR}/tmp
 
-
-if [ -d "$DIRECTORY" ]; then
-  # Control will enter here if $DIRECTORY exists.
-fi
-
-Or to check if a directory doesn't exist:
-
-if [ ! -d "$DIRECTORY" ]; the…
-
 # for debugging
 ##RUN ls -l && pwd
 
