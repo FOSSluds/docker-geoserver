@@ -47,10 +47,10 @@ ADD getExtensions.sh ${GEOSERVER_DATA_DIR}/tmp/getExtensions.sh
 ADD extensions ${GEOSERVER_DATA_DIR}/tmp/extensions
 RUN chmod +x ${GEOSERVER_DATA_DIR}/tmp/getExtensions.sh \
 	&& cd ${GEOSERVER_DATA_DIR}/tmp \
-	# && echo "myDebug" \
-	# && pwd \
-	# && ls -l \
-	&& ${GEOSERVER_DATA_DIR}/tmp/getExtensions.sh -v ${GEOSERVER_VERSION} -t "." \
+	&& echo "myDebug" \
+	&& pwd \
+	&& ls -l
+RUN ${GEOSERVER_DATA_DIR}/tmp/getExtensions.sh -v ${GEOSERVER_VERSION} -t "." \
 	&& cp ${GEOSERVER_DATA_DIR}/tmp/*.jar ${GEOSERVER_INSTALL_DIR}/${GEOSERVER_EXTENSION_SUFFIX_INSTALL_DIR} \
 	&& cd ${GEOSERVER_DATA_DIR} \
 	&& rm -rf ${GEOSERVER_DATA_DIR}/tmp
