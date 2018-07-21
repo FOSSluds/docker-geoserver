@@ -42,11 +42,14 @@ RUN mkdir ${GEOSERVER_DATA_DIR} \
 	&& rm -rf geoserver-${GEOSERVER_VERSION}-war.zip geoserver.war target *.txt
 
 # GeoServer Extensions
+RUN mkdir -p ${GEOSERVER_DATA_DIR}/tmp
 ADD getExtensions.sh ${GEOSERVER_DATA_DIR}/tmp/getExtensions.sh
 ADD extensions ${GEOSERVER_DATA_DIR}/tmp/extensions
-RUN mkdir -p ${GEOSERVER_DATA_DIR}/tmp \
-	&& chmod +x ${GEOSERVER_DATA_DIR}/tmp/getExtensions.sh \
+RUN chmod +x ${GEOSERVER_DATA_DIR}/tmp/getExtensions.sh \
 	&& cd ${GEOSERVER_DATA_DIR}/tmp \
+	&& echo "myDebug"
+	&& pwd
+	&& ls -l
 	&& ./getExtensions.sh -v ${GEOSERVER_VERSION} -t "." \
 	&& cp *.jar ${GEOSERVER_INSTALL_DIR}/${GEOSERVER_EXTENSION_SUFFIX_INSTALL_DIR} \
 	&& cd ${GEOSERVER_DATA_DIR} \
