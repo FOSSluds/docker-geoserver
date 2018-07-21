@@ -1,8 +1,10 @@
 #!/bin/sh
 
-DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+#DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+DIR="/var/local/geoserver/tempExt/"
 DEFAULT_EXTS_FILE="extensions"
 DEFAULT_TARGET_DIR="geoserver-exts"
+GeoServerVersion="2.13.1"
 
 usage="Usage: $0 -v <gs_version> [-f <exts_file>] [-t <target_dir>] [-h]
   -f  extensions file. Default is '${DEFAULT_EXTS_FILE}' in the current directory.
@@ -11,8 +13,8 @@ usage="Usage: $0 -v <gs_version> [-f <exts_file>] [-t <target_dir>] [-h]
   -h  Show this help."
 
 currentDirectory=$(PWD)
-extsFile="./${DEFAULT_EXTS_FILE}"
-targetDir="."
+extsFile="${DIR}/${DEFAULT_EXTS_FILE}"
+targetDir="${DIR}"
 
 while getopts "hv:t:f:" option; do
   case $option in
@@ -36,6 +38,8 @@ while getopts "hv:t:f:" option; do
       ;;
   esac
 done
+
+version=${GeoServerVersion}
 
 if [ -z "${version}" ]; then
   echo "Missing GeoServer version."
