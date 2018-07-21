@@ -42,21 +42,19 @@ RUN mkdir ${GEOSERVER_DATA_DIR} \
 	&& rm -rf geoserver-${GEOSERVER_VERSION}-war.zip geoserver.war target *.txt
 
 # GeoServer Extensions
-RUN mkdir ${GEOSERVER_DATA_DIR}/tmp
 ADD getExtensions.sh ${GEOSERVER_DATA_DIR}/tmp/getExtensions.sh
-RUN chmod +x ${GEOSERVER_DATA_DIR}/tmp/getExtensions.sh
 ADD extensions ${GEOSERVER_DATA_DIR}/tmp/extensions
-RUN cd ${GEOSERVER_DATA_DIR}/tmp \
-	&& true
-# for debugging
-RUN ls -l && pwd
-RUN ls -lR ${GEOSERVER_DATA_DIR}
-RUN ls -lR ${GEOSERVER_INSTALL_DIR}
+RUN mkdir ${GEOSERVER_DATA_DIR}/tmp \
+	&& chmod +x ${GEOSERVER_DATA_DIR}/tmp/getExtensions.sh \
+	&& cd ${GEOSERVER_DATA_DIR}/tmp \
+	&& ./getExtensions.sh -v ${GEOSERVER_VERSION} -t "." \
+	&& cp *.jar ${GEOSERVER_INSTALL_DIR}/${GEOSERVER_EXTENSION_SUFFIX_INSTALL_DIR} \
+	&& cd ${GEOSERVER_DATA_DIR} \
+	&& rm -rf ${GEOSERVER_DATA_DIR}/tmp
 
-	# && ./getExtensions.sh -v ${GEOSERVER_VERSION} -t "." \
-	# && cp *.jar ${GEOSERVER_INSTALL_DIR}/${GEOSERVER_EXTENSION_SUFFIX_INSTALL_DIR} \
-	# && cd ${GEOSERVER_DATA_DIR} \
-	# && rm -rf tmp
+# for debugging
+##RUN ls -l && pwd
+
 
 # Enable CORS
 RUN sed -i '\:</web-app>:i\
