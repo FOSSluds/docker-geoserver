@@ -12,7 +12,7 @@ usage="Usage: $0 -v <gs_version> [-f <exts_file>] [-t <target_dir>] [-h]
   -t  target directory. Default is '${DEFAULT_TARGET_DIR}' in the current directory.
   -h  Show this help."
 
-currentDirectory=$(PWD)
+currentDirectory=$(pwd)
 extsFile="${DIR}/${DEFAULT_EXTS_FILE}"
 targetDir="${DIR}"
 
@@ -63,14 +63,15 @@ baseAresUrl=https://build.geoserver.org/geoserver/${majorVersion}.x/community-la
 exts=`sed 's/#.*$//g;/^$/d' ${extsFile} 2>/dev/null`
 
 mkdir -p ${targetDir}
-pushd ${targetDir} > /dev/null
+oldworkingDir=$(pwd)
+cd ${targetDir}
 echo "[INFO] Downloading extensions to ${targetDir}..."
 
 for ext in ${exts}; do
-  if [ ${ext} == "geofence" ]; then
+  if [[ ${ext} == "geofence" ]]; then
     filename="geoserver-${majorVersion}-SNAPSHOT-geofence-plugin.zip"
     baseUrl=${baseAresUrl}
-  elif [ ${ext} == "geofence-server" ]; then
+  elif [[ ${ext} == "geofence-server" ]]; then
     filename="geoserver-${majorVersion}-SNAPSHOT-geofence-server-plugin.zip"
     baseUrl=${baseAresUrl}
   else
@@ -86,10 +87,10 @@ for ext in ${exts}; do
     continue
   fi
 
-  unzip -d ${ext} ${filename}
+  unzip ${filename}
+  
   rm ${filename}
 done
 
-popd > /dev/null
+cd $oldworkingDir
 echo "[INFO] Done."
-

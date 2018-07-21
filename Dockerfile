@@ -51,13 +51,13 @@ RUN chmod +x ${GEOSERVER_DATA_DIR}/tempExt/getExtensions.sh \
 #RUN ["executable", "param1", "param2"] (exec form)
 #RUN ["/var/local/geoserver/tempExt/getExtensions.sh", "-v", "2.13.1", "-t", "."]
 	&& cd ${GEOSERVER_DATA_DIR}/tempExt \
-	&& echo "myDebug" \
-	&& pwd \
-	&& ls -l \
-	&& id \
-	&& groups \
-	&& which bash \
-	&& which sh \
+	# && echo "myDebug" \
+	# && pwd \
+	# && ls -l \
+	# && id \
+	# && groups \
+	# && which bash \
+	# && which sh \
 	&& /bin/sh /var/local/geoserver/tempExt/getExtensions.sh \
 	&& cp ${GEOSERVER_DATA_DIR}/tempExt/*.jar ${GEOSERVER_INSTALL_DIR}/${GEOSERVER_EXTENSION_SUFFIX_INSTALL_DIR} \
 	&& cd ${GEOSERVER_DATA_DIR} \
