@@ -44,13 +44,22 @@ RUN mkdir ${GEOSERVER_DATA_DIR} \
 # GeoServer Extensions
 ADD getExtensions.sh ${GEOSERVER_DATA_DIR}/tmp/getExtensions.sh
 ADD extensions ${GEOSERVER_DATA_DIR}/tmp/extensions
-RUN mkdir ${GEOSERVER_DATA_DIR}/tmp \
+RUN mkdir -p ${GEOSERVER_DATA_DIR}/tmp \
 	&& chmod +x ${GEOSERVER_DATA_DIR}/tmp/getExtensions.sh \
 	&& cd ${GEOSERVER_DATA_DIR}/tmp \
 	&& ./getExtensions.sh -v ${GEOSERVER_VERSION} -t "." \
 	&& cp *.jar ${GEOSERVER_INSTALL_DIR}/${GEOSERVER_EXTENSION_SUFFIX_INSTALL_DIR} \
 	&& cd ${GEOSERVER_DATA_DIR} \
 	&& rm -rf ${GEOSERVER_DATA_DIR}/tmp
+
+
+if [ -d "$DIRECTORY" ]; then
+  # Control will enter here if $DIRECTORY exists.
+fi
+
+Or to check if a directory doesn't exist:
+
+if [ ! -d "$DIRECTORY" ]; the…
 
 # for debugging
 ##RUN ls -l && pwd
