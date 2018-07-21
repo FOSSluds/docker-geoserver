@@ -49,10 +49,10 @@ ADD extensions ${GEOSERVER_DATA_DIR}/tmp/extensions
 RUN cd ${GEOSERVER_DATA_DIR}/tmp \
 	&& true
 # for debugging
-RUN ls -l
+RUN ls -l && pwd
 RUN ls -lR ${GEOSERVER_DATA_DIR}
 RUN ls -lR ${GEOSERVER_INSTALL_DIR}
- 
+
 	# && ./getExtensions.sh -v ${GEOSERVER_VERSION} -t "." \
 	# && cp *.jar ${GEOSERVER_INSTALL_DIR}/${GEOSERVER_EXTENSION_SUFFIX_INSTALL_DIR} \
 	# && cd ${GEOSERVER_DATA_DIR} \
